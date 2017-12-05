@@ -1,1 +1,1 @@
-Simple web app that gets pokemon data from pokeapi.co and filters it. It is made with React.js
+Simple web app that gets pokemon data from pokeapi.co and filters it. It is made with React.js and was bootstrapped with create-react-app.

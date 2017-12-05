@@ -1,0 +1,106 @@
+.App {
+  text-align: center;
+}
+
+.main { 
+  display: flex;
+}
+  .filter-container {
+    height: 100vh;
+    width: 20vw;
+    border: 1px solid grey;
+  }
+    .moves-criteria,
+    .type-criteria,
+    .abilities-criteria {
+      margin: 5em;
+    }
+    
+  .right-side-wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+    .group-container {
+      height: 20vh;
+      width: 80vw;
+      border: 1px solid grey;
+      display: flex;
+    }
+      .btn-container {
+        margin: 2em;
+        align-self: center;
+      }
+      .circle-btn {
+        background-color: #2ecc71;
+        color: white;
+        margin: auto;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 1.9em;
+        line-height: 1.42;
+        border-radius: 30px;
+      }
+      .circle-btn:hover {
+        cursor: pointer;
+        background-color: #e67e22;
+        transition: background-color .4s;
+      }
+    .pokemon-container {
+      height: 80vh;
+      width: 80vw;
+      border: 1px solid grey;
+    }
+      .thumbnail {
+        width: 50em;
+        margin: 2em;
+      }
+
+/*--------Loader css-------*/
+.spinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+  display: none;
+}
+
+.is-loading{
+  display: block;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
