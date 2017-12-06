@@ -10,13 +10,18 @@ export default function PokemonsReducer(state=initialState, action) {
             return { ...state, isLoading: true }
         }
         case 'RECEIVED_POKEMON': {
-            return { ...state, 
-                    isLoading: false, 
-                    pokemons: action.payload 
-                }
+            return Object.assign({}, state, {
+                isLoading: false, 
+                pokemons: action.payload
+            });
         }
         case 'ERROR_RECEIVING_POKEMON': {
             return { ...state, isLoading: true }
+        }
+        case 'WEIGHT_SELECTED': {
+            return {
+                ...state, selectedWeight: action.payload
+            }
         }
         default:
             return state;

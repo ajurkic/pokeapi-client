@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import MovesFilter from '../components/Filters/MovesFilter';
+import WeightFilter from '../components/Filters/WeightFilter';
 import TypesFilter from '../components/Filters/TypesFilter'
-import AbilitiesFilter from '../components/Filters/AbilitiesFilter';
+import BaseXPFilter from '../components/Filters/BaseXPFilter';
 
 class FiltersContainer extends Component
 {
     render(){
         return (
             <div className='filter-container'>
-                <MovesFilter />
+                <WeightFilter />
                 <TypesFilter />
-                <AbilitiesFilter />
+                <BaseXPFilter />
             </div>
         );
     };

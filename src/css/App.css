@@ -104,3 +104,8 @@
     transform: scale(1.0);
   }
 }
+
+/*------Filtering the pokemon---------*/
+.hidden{
+  display: none;
+}
