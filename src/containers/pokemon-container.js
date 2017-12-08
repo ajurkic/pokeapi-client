@@ -9,12 +9,12 @@ class PokemonContainer extends Component
     };
 
     createPokemonCards() {
-        return this.props.pokemons.map((pokemon) => {
+        return this.props.filteredPokemons.map((pokemon) => {
             return (
-                <div key={pokemon.id} className={`thumbnail ${this.props.selectedWeight < pokemon.weight ? 'hidden' : ''} `}>
+                <div key={pokemon.id} className="thumbnail">
                     <div className="card-block">
                     <h4 className="card-title">{pokemon.name}</h4>
-                    {/* <img src={pokemon.sprites.front_default} alt="pokemon"/> */}
+                    <img src={pokemon.sprites.front_default} alt="pokemon"/>
                     <h6 className="card-subtitle mb-2 text-muted">Height(inch): {pokemon.height}</h6>
                     <h6 className="card-subtitle mb-2 text-muted">Weight(lb): {pokemon.weight}</h6>
                     <h6 className="card-subtitle mb-2 text-muted">Base experience: {pokemon.base_experience}</h6>
@@ -37,6 +37,10 @@ class PokemonContainer extends Component
             <div className='pokemon-container'>
                 { !this.props.isLoading ? this.createPokemonCards() : '' }
 
+                { this.props.pokemons.length === 0 && !this.props.isLoading 
+                    ? <h4>Error fetching pokemon. Please, try refreshing the page.</h4> 
+                    : ''}
+
                 <div className={` spinner ${this.props.isLoading ? 'is-loading' : ''} `}>
                     <h4>Fetching the pokemons...</h4>
                     <div className="bounce1"></div>
@@ -51,11 +55,12 @@ class PokemonContainer extends Component
 //takes application state(part of store) and passes it as a prop to a component
 //so i can access it in component via this.props.pokemons
 function mapStateToProps(state) {
-    //state here is array of pokemons coming from reducer
+    //state here is everything coming from reducer that is sent by action
+    //"Ok, send this states as props to this component: isLoading, pokemons,.."
     return {
         isLoading: state.isLoading,
         pokemons: state.pokemons,
-        selectedWeight: state.selectedWeight
+        filteredPokemons: state.filteredPokemons
     };
 }
 
