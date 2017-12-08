@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Radio } from 'react-bootstrap';
-import * as actionCreators from '../../actions/pokemonActions';
+import * as actionCreators from '../actions/pokemonActions';
 
 class WeightFilter extends Component
 {
@@ -28,7 +28,7 @@ class WeightFilter extends Component
     render(){
         return (
             <div className='moves-criteria'>
-                <h4>Weight (less than):</h4>
+                <h5>Weight (less than):</h5>
                 <div onChange={this.selectRadioBtn.bind(this)}>
                     <Radio id='radio1' name='radioGroup'>50</Radio>
                     <Radio id='radio2' name='radioGroup'>200</Radio>

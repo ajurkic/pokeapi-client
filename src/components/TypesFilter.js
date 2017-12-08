@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import * as actionCreators from '../../actions/pokemonActions';
+import * as actionCreators from '../actions/pokemonActions';
 
 class TypesFilter extends Component
 {
@@ -15,7 +15,7 @@ class TypesFilter extends Component
     render(){
         return (
             <div className='type-criteria' onChange={this.selectCheckbox.bind(this)}>
-                <h3>Type:</h3>
+                <h5>Type:</h5>
                 <Checkbox>Fire</Checkbox>
                 <Checkbox>Water</Checkbox>
                 <Checkbox>Bug</Checkbox>

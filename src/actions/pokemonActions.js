@@ -2,23 +2,18 @@ import axios from 'axios';
 
 export function getPokemons() {
     return function(dispatch) {
-        var pokemons = [];
         for (let i = 0; i < 15; i++) {
             //first request them so UI can show loading spinner
             dispatch({type: 'REQUEST_POKEMON'})
             
             axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 800) + 1}/`)
                 .then((response) => {
-                    pokemons.push(response.data);
+                    dispatch({type: 'RECEIVED_POKEMON', payload: response.data})
                 })
                 .catch((err) => {
                     dispatch({type: 'ERROR_RECEIVING_POKEMON', payload: err});
                 });
         }
-        //Wait for pokemons to come, than dispatch an action to save them to state
-        setTimeout(function(){ 
-            dispatch({type: 'RECEIVED_POKEMON', payload: pokemons})
-        }, 10000);
     }
 }
 

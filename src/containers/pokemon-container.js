@@ -13,19 +13,19 @@ class PokemonContainer extends Component
             return (
                 <div key={pokemon.id} className="thumbnail">
                     <div className="card-block">
-                    <h4 className="card-title">{pokemon.name}</h4>
-                    <img src={pokemon.sprites.front_default} alt="pokemon"/>
-                    <h6 className="card-subtitle mb-2 text-muted">Height(inch): {pokemon.height}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Weight(lb): {pokemon.weight}</h6>
-                    <h6 className="card-subtitle mb-2 text-muted">Base experience: {pokemon.base_experience}</h6>
-                    <h5 className="card-subtitle text-muted">Type:</h5>
-                    <ul>
-                        {pokemon.types.map((type) => {
-                            return <li key={type.slot} className="text-muted">
-                                        {type.type.name}
-                                    </li>
-                        })}
-                    </ul>
+                        <h4 className="card-title">{pokemon.name.toUpperCase()}</h4>
+                        <img src={pokemon.sprites.front_default} alt="pokemon"/>
+                        <h6 className="card-subtitle mb-2 text-muted">Height: {pokemon.height} inch</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">Weight: {pokemon.weight} lb</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">Base experience: {pokemon.base_experience}</h6>
+                        <h5 className="card-subtitle text-muted">Type:</h5>
+                        <ul className="list-unstyled">
+                            {pokemon.types.map((type) => {
+                                return <li key={type.slot} className="text-muted mb-2 text-capitalize">
+                                            {type.type.name}
+                                        </li>
+                            })}
+                        </ul>
                     </div>
                 </div>
             )
@@ -38,11 +38,11 @@ class PokemonContainer extends Component
                 { !this.props.isLoading ? this.createPokemonCards() : '' }
 
                 { this.props.pokemons.length === 0 && !this.props.isLoading 
-                    ? <h4>Error fetching pokemon. Please, try refreshing the page.</h4> 
+                    ? <h4>Error fetching pokemon. Please, try refreshing the page. If problem persists pokeapi.co is probably down.</h4> 
                     : ''}
 
                 <div className={` spinner ${this.props.isLoading ? 'is-loading' : ''} `}>
-                    <h4>Fetching the pokemons...</h4>
+                    <h4><i>Fetching the pokemon</i></h4>
                     <div className="bounce1"></div>
                     <div className="bounce2"></div>
                     <div className="bounce3"></div>

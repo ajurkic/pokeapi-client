@@ -52,7 +52,7 @@ class GroupsContainer extends Component
                     <div className='circle-btn' onClick={this.handleGroupClick.bind(this)}>2</div>
                     <h5>Weight(5000) + Base exp.(100)</h5>
                 </div>
-
+                
                 <div className='btn-container'>
                     <div className='circle-btn' onClick={this.handleGroupClick.bind(this)}>3</div>
                     <h5>Water + Ground</h5>

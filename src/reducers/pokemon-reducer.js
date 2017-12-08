@@ -10,12 +10,13 @@ export default function PokemonsReducer(state=initialState, action) {
         case 'REQUEST_POKEMON': {
             return { ...state, isLoading: true }
         }
-        case 'RECEIVED_POKEMON': {
-            return Object.assign({}, state, {
-                isLoading: false, 
-                pokemons: action.payload,
-                filteredPokemons: action.payload
-            });
+        case 'RECEIVED_POKEMON':{
+            return {
+                ...state,
+                isLoading: false,
+                pokemons: [...state.pokemons, action.payload],
+                filteredPokemons: [...state.filteredPokemons, action.payload]
+            }
         }
         case 'ERROR_RECEIVING_POKEMON': {
             return { ...state, isLoading: true }

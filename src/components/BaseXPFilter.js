@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions/pokemonActions';
+import * as actionCreators from '../actions/pokemonActions';
 
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
@@ -12,7 +12,7 @@ class BaseXPFilter extends Component
     render(){
         return (
             <div className='abilities-criteria'>
-                <h3>Base exp:</h3>
+                <h5>Base exp:</h5>
                 <DropdownButton id='dropdown' title='Choose...'>
                     <MenuItem onClick={this.selectedItem.bind(this)}>20</MenuItem>
                     <MenuItem onClick={this.selectedItem.bind(this)}>50</MenuItem>

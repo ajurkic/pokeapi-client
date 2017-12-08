@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/pokemonActions';
 
-import WeightFilter from '../components/Filters/WeightFilter';
-import TypesFilter from '../components/Filters/TypesFilter'
-import BaseXPFilter from '../components/Filters/BaseXPFilter';
+import WeightFilter from '../components/WeightFilter';
+import TypesFilter from '../components/TypesFilter'
+import BaseXPFilter from '../components/BaseXPFilter';
 
 class FiltersContainer extends Component
 {
@@ -16,8 +16,8 @@ class FiltersContainer extends Component
             <div className='filter-container'>
                 <button className="btn btn-primary" onClick={this.handleBtnClick.bind(this)}>Reset</button>
                 <WeightFilter />
-                <TypesFilter />
                 <BaseXPFilter />
+                <TypesFilter />
             </div>
         );
     };
