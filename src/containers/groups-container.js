@@ -7,12 +7,17 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 class GroupsContainer extends Component
 {
     handleGroupClick(selected){
+        //Reset filters so the group can be applied to all pokemons
         this.props.resetFilters(this.props.pokemons);
 
         let group = selected.target.firstChild.data;
         var temp = this;
 
+        //Wait for 300 ms so resetFilters can do its job
         setTimeout(() => {
+            //All cases in switch statement are provided with setTimeout,
+            //that way we can be sure that the second filter is applied  
+            //after first returns its pokemons
             switch (group) {
                 case '1':
                     this.props.selectWeight(1000);
@@ -33,6 +38,7 @@ class GroupsContainer extends Component
                 default:
                     break;
             }
+            //Call filterEngine with selected filters by group
             setTimeout(function(){
                 temp.props.filterEngine(temp.props.selectedWeight,
                                         temp.props.selectedBaseXP,
@@ -41,9 +47,12 @@ class GroupsContainer extends Component
             }, 300);
         }, 300);
     }
-    handleResetClick() {
+
+    //Handles reseting all Filters to none
+    handleResetBtnClick() {
         this.props.resetFilters();
     }
+
     render(){
         return(
             <div className='group-container'>
@@ -68,7 +77,7 @@ class GroupsContainer extends Component
                 </div>
 
                 <div className='btn-container'>
-                    <div className='circle-btn' style={{"background-color": "#e74c3c"}} onClick={this.handleResetClick()}>R</div>
+                    <div className='circle-btn' style={{"background-color": "#e74c3c"}} onClick={this.handleResetBtnClick()}>R</div>
                     <h5>Reset filters</h5>
                 </div>
             </div>

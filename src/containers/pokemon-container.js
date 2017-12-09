@@ -41,10 +41,9 @@ class PokemonContainer extends Component
                     : '' }
 
                 {/*If it is done loading and all pokemons were filtered*/}
-                <h3>{ !this.props.isLoading && this.props.filteredPokemons.length === 0 
-                    ? 'All pokemons were filtered, try another combination'
+                { !this.props.isLoading && this.props.filteredPokemons.length === 0 
+                    ? <h3>All pokemons were filtered, hit reset button then try another combination</h3>
                     : ''}
-                </h3>
 
                 {/*If it is done loading and no pokemon came from api*/}
                 { !this.props.isLoading && this.props.pokemons.length === 0
@@ -63,11 +62,11 @@ class PokemonContainer extends Component
     };
 }
 
-//takes application state(part of store) and passes it as a prop to a component
+//Takes application state (part of store) and passes it as a prop to a component
 //so i can access it in component via this.props.pokemons
 function mapStateToProps(state) {
-    //state here is everything coming from reducer that is sent by action
-    //"Ok, send this states as props to this component: isLoading, pokemons,.."
+    //State parameter is everything coming from reducer that is sent by action
+    //"Ok, send this states (isLoading, pokemons, ...) as props to this component"
     return {
         isLoading: state.isLoading,
         pokemons: state.pokemons,
@@ -77,5 +76,6 @@ function mapStateToProps(state) {
 
 /*This way we are taking the component and making it aware of the store
   it is connected to (pokemon data) - now it is a smart component. 
-  Otherwise it would be just a dumb component that doesn't know anything  */
+  Otherwise it would be just a dumb component that doesn't know anything
+  and just shows part of webpage. */
 export default connect(mapStateToProps, actionCreators)(PokemonContainer);

@@ -17,6 +17,7 @@ export function getPokemons() {
         }
     }
 }
+
 //Save selected weight to state so we can track the applied filter
 export function selectWeight(weight){
     return function(dispatch) {
@@ -26,6 +27,7 @@ export function selectWeight(weight){
         });
     }
 }
+
 //Save selected Base exp s owe can track the applied filter
 export function selectBaseXP(baseXP){
     return function(dispatch) {
@@ -35,6 +37,7 @@ export function selectBaseXP(baseXP){
         });
     }
 }
+
 //Handles checking the types, saves checked types as array to state
 export function selectType(selectedType, selectedTypesList){
     return function(dispatch) {
@@ -42,6 +45,7 @@ export function selectType(selectedType, selectedTypesList){
         dispatch({type: 'ADD_TYPE_TO_SELECTED_TYPES', payload: selectedTypesList});
     }
 }
+
 //Handles unchecking the type, saves the rest as array to state
 export function deselectType(deselectedType, selectedTypesList){
     return function(dispatch) {
@@ -57,17 +61,20 @@ export function resetFilters(pokemons) {
         dispatch({type: 'RESET_FILTERS', payload: pokemons});
     }
 }
+
 //Function not exported! It is just used in filterEngine!
 function filterByWeight(weight, pokemons){
     if(!weight) return [];
 
     return pokemons.filter(pokemon => pokemon.weight < weight);
 }
+
 //Function not exported! It is just used in filterEngine!
 function filterByBaseXP(baseXP, pokemons){
     if(!baseXP) return [];
     return pokemons.filter(pokemon => pokemon.base_experience < baseXP);
 }
+
 //Function not exported! It is just used in filterEngine!
 function filterByType(selectedTypesList, pokemons){
     if(selectedTypesList.length === 0) return [];
@@ -89,7 +96,8 @@ function filterByType(selectedTypesList, pokemons){
 
     return filteredPokemons;
 }
-//Parameters: selectedWeight - selectedBaseXP - selectedTypesList - all pokemons
+
+//Parameters from state: selectedWeight - selectedBaseXP - selectedTypesList - pokemons
 //Filters all 15 pokemons based on filter selection from user
 //Activates every time user clicks on filter and always filters from whole list of pokemons
 export function filterEngine(weight, baseXP, selectedTypesList, pokemons){

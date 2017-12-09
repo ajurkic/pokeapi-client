@@ -5,6 +5,8 @@ import * as actionCreators from '../actions/pokemonActions';
 
 class WeightFilter extends Component
 {
+    //On every weight select changes the selectedWeight state
+    //and calls filterEngine with selected filters
     selectRadioBtn(selected) {
         switch (selected.target.id) {
             case 'radio1':
