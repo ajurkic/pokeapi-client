@@ -1,19 +1,14 @@
-.App {
-  text-align: center;
+html {
+  background-color: #239c56;
+  height: 100%;
 }
-
 .main { 
   display: flex;
 }
-  .filter-container {
-    border: 1px solid grey;
-    width: 20vw;
-    background-color: #ecf0f1
-  }
     .moves-criteria,
     .type-criteria,
     .abilities-criteria {
-      margin: 5em;
+      margin: 3em;
     }
     .moves-criteria > h5 {
       text-align: center;
@@ -30,7 +25,6 @@
     flex-direction: column;
   }
     .group-container {
-      border: 1px solid grey;
       display: flex;
       justify-content: center;
       background-color: #ecf0f1
@@ -40,7 +34,7 @@
         align-self: center;
       }
       .circle-btn {
-        background-color: #2ecc71;
+        background-color: #34495e;
         color: white;
         margin: auto;
         width: 50px;
@@ -57,13 +51,15 @@
         transition: background-color .4s;
       }
     .pokemon-container {
-      border: 1px solid grey;
       display: flex;
       flex-wrap: wrap;
-      height: 100%;
       justify-content: center;
-      background-color: #27ae60
+      height: 100%;
+      background-color: #239c56;
     }
+      .pokemon-container > h3 {
+        color: white;
+      }
       .thumbnail {
         width: 20em;
         margin: 2em;
@@ -84,7 +80,7 @@
 /*--------Loader css-------*/
 .spinner {
   margin: 100px auto 0;
-  width: 70px;
+  width: 300px;
   text-align: center;
   display: none;
   color: white;
@@ -130,11 +126,56 @@
   }
 }
 
-/*------Filtering the pokemon---------*/
-.hidden{
-  display: none;
-}
 #dropdown {
-  width: 8em;
+  width: 7em;
   margin: 1em -1em;
+}
+/*------------------------Burger menu----------------------------*/
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #34495e;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 34px;
+  width: 34px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  height: auto;
+  background: #2c3e50;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }

@@ -24,6 +24,9 @@ export default function PokemonsReducer(state=initialState, action) {
         case 'ERROR_RECEIVING_POKEMON': {
             return { ...state, isLoading: true }
         }
+        case 'RESET_FILTERS': {
+            return { ...state, isLoading: true, filteredPokemons: action.payload }
+        }
         case 'UPDATE_SELECTED_WEIGHT': {
             return { ...state, selectedWeight: action.payload }
         }
@@ -37,14 +40,7 @@ export default function PokemonsReducer(state=initialState, action) {
             return { ...state, selectedTypes: action.payload }
         }
         case 'FILTERED_POKEMONS': {
-            return { ...state, filteredPokemons: action.payload }
-        }
-        case 'RESET_FILTERS': {
-            return {
-                ...state,
-                pokemons: action.payload,
-                filteredPokemons: action.payload
-            }
+            return { ...state, isLoading: false, filteredPokemons: action.payload }
         }
         default:
             return state;

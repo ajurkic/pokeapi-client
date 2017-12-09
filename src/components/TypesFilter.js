@@ -27,10 +27,10 @@ class TypesFilter extends Component
                 <h5>Type:</h5>
                 <Checkbox>Fire</Checkbox>
                 <Checkbox>Water</Checkbox>
-                <Checkbox>Bug</Checkbox>
                 <Checkbox>Normal</Checkbox>
                 <Checkbox>Rock</Checkbox>
                 <Checkbox>Dragon</Checkbox>
+                <Checkbox>Flying</Checkbox>
                 <Checkbox>Psychic</Checkbox>
                 <Checkbox>Poison</Checkbox>
             </div>

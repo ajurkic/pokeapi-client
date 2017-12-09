@@ -41,9 +41,10 @@ class PokemonContainer extends Component
                     : '' }
 
                 {/*If it is done loading and all pokemons were filtered*/}
-                { !this.props.isLoading && this.props.filteredPokemons.length === 0 
+                <h3>{ !this.props.isLoading && this.props.filteredPokemons.length === 0 
                     ? 'All pokemons were filtered, try another combination'
                     : ''}
+                </h3>
 
                 {/*If it is done loading and no pokemon came from api*/}
                 { !this.props.isLoading && this.props.pokemons.length === 0
@@ -51,10 +52,11 @@ class PokemonContainer extends Component
                     : ''}
 
                 <div className={` spinner ${this.props.isLoading ? 'is-loading' : ''} `}>
-                    <h4><i>Fetching the pokemon</i></h4>
+                    <h2><i>Loading the pokemon</i></h2><br/>
                     <div className="bounce1"></div>
                     <div className="bounce2"></div>
                     <div className="bounce3"></div>
+                    <h5><i>(refresh if waiting too long)</i></h5>
                 </div>
             </div>
         );

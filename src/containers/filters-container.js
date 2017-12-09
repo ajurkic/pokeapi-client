@@ -6,14 +6,18 @@ import WeightFilter from '../components/WeightFilter';
 import TypesFilter from '../components/TypesFilter'
 import BaseXPFilter from '../components/BaseXPFilter';
 
+import { push as Menu } from 'react-burger-menu';
+
 class FiltersContainer extends Component
 {
     render(){
         return (
             <div className='filter-container'>
-                <WeightFilter />
-                <BaseXPFilter />
-                <TypesFilter />
+                <Menu noOverlay>
+                    <WeightFilter />
+                    <BaseXPFilter />
+                    <TypesFilter />
+                </Menu>
             </div>
         );
     };

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//Fetches pokemons from pokeapi.co
 export function getPokemons() {
     return function(dispatch) {
         for (let i = 0; i < 15; i++) {
@@ -16,6 +17,7 @@ export function getPokemons() {
         }
     }
 }
+//Save selected weight to state so we can track the applied filter
 export function selectWeight(weight){
     return function(dispatch) {
         dispatch({
@@ -24,6 +26,7 @@ export function selectWeight(weight){
         });
     }
 }
+//Save selected Base exp s owe can track the applied filter
 export function selectBaseXP(baseXP){
     return function(dispatch) {
         dispatch({
@@ -32,12 +35,14 @@ export function selectBaseXP(baseXP){
         });
     }
 }
+//Handles checking the types, saves checked types as array to state
 export function selectType(selectedType, selectedTypesList){
     return function(dispatch) {
         selectedTypesList.push(selectedType);
         dispatch({type: 'ADD_TYPE_TO_SELECTED_TYPES', payload: selectedTypesList});
     }
 }
+//Handles unchecking the type, saves the rest as array to state
 export function deselectType(deselectedType, selectedTypesList){
     return function(dispatch) {
         const tempList = selectedTypesList.filter( type => type !== deselectedType);
@@ -52,17 +57,18 @@ export function resetFilters(pokemons) {
         dispatch({type: 'RESET_FILTERS', payload: pokemons});
     }
 }
-//Returns all pokemons with the weight less than selected one
+//Function not exported! It is just used in filterEngine!
 function filterByWeight(weight, pokemons){
     if(!weight) return [];
 
     return pokemons.filter(pokemon => pokemon.weight < weight);
 }
-//
+//Function not exported! It is just used in filterEngine!
 function filterByBaseXP(baseXP, pokemons){
     if(!baseXP) return [];
     return pokemons.filter(pokemon => pokemon.base_experience < baseXP);
 }
+//Function not exported! It is just used in filterEngine!
 function filterByType(selectedTypesList, pokemons){
     if(selectedTypesList.length === 0) return [];
 
@@ -84,14 +90,12 @@ function filterByType(selectedTypesList, pokemons){
     return filteredPokemons;
 }
 //Parameters: selectedWeight - selectedBaseXP - selectedTypesList - all pokemons
-//filters all 15 pokemons based on filter selection from user
-//activates every time user clicks on filter and always filters from whole list of pokemons
+//Filters all 15 pokemons based on filter selection from user
+//Activates every time user clicks on filter and always filters from whole list of pokemons
 export function filterEngine(weight, baseXP, selectedTypesList, pokemons){
     return function(dispatch) {
         const weightFilteredPokemons = filterByWeight(weight, pokemons);
-
         const baseXPFilteredPokemons = filterByBaseXP(baseXP, pokemons);
-
         const typeFilteredPokemons = filterByType(selectedTypesList, pokemons);
 
         var filteredPokemons = [];
@@ -118,6 +122,7 @@ export function filterEngine(weight, baseXP, selectedTypesList, pokemons){
                 });
             });
         }
+        //Weight and Types active
         if(weight && !baseXP && selectedTypesList.length !== 0){
             weightFilteredPokemons.forEach(weightPokemon => {
                 typeFilteredPokemons.forEach(typePokemon => {
@@ -126,6 +131,7 @@ export function filterEngine(weight, baseXP, selectedTypesList, pokemons){
                 });
             });
         }
+        //Weight and BaseXP active
         if(weight && baseXP && selectedTypesList.length === 0){
             weightFilteredPokemons.forEach(weightPokemon => {
                 baseXPFilteredPokemons.forEach(baseXPPokemon => {
@@ -134,18 +140,26 @@ export function filterEngine(weight, baseXP, selectedTypesList, pokemons){
                 });
             });
         }
+        //Only weight filter applied
         if(weight && !baseXP && selectedTypesList.length === 0){
             filteredPokemons = weightFilteredPokemons;
         }
+        //Only BaseXP filter applied
         if(!weight && baseXP && selectedTypesList.length === 0){
             filteredPokemons = baseXPFilteredPokemons;
         }
+        //Only type filter applied
         if(!weight && !baseXP && selectedTypesList.length !== 0){
             filteredPokemons = typeFilteredPokemons;
         }
 
+        //Remove duplicates, if there are any
+        var filteredNoDuplicates = filteredPokemons.filter(function(elem, index, self) {
+            return index === self.indexOf(elem);
+        });
+
         setTimeout(()=>{
-            dispatch({type: 'FILTERED_POKEMONS', payload: filteredPokemons});
+            dispatch({type: 'FILTERED_POKEMONS', payload: filteredNoDuplicates});
         }, 500);
     }
 }
