@@ -50,7 +50,7 @@ class GroupsContainer extends Component
 
     //Handles reseting all Filters to none
     handleResetBtnClick() {
-        this.props.resetFilters();
+        this.props.resetFilters(this.props.pokemons);
     }
 
     render(){
@@ -77,7 +77,7 @@ class GroupsContainer extends Component
                 </div>
 
                 <div className='btn-container'>
-                    <div className='circle-btn' style={{"background-color": "#e74c3c"}} onClick={this.handleResetBtnClick()}>R</div>
+                    <div className='circle-btn' style={{"backgroundColor": "#e74c3c"}} onClick={this.handleResetBtnClick.bind(this)}>R</div>
                     <h5>Reset filters</h5>
                 </div>
             </div>

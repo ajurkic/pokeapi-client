@@ -26,8 +26,7 @@ export default function PokemonsReducer(state=initialState, action) {
         }
         case 'RESET_FILTERS': {
             return { 
-                ...state, 
-                isLoading: true, 
+                ...state,
                 filteredPokemons: action.payload,
                 selectedTypes: [],
                 selectedWeight: null,
