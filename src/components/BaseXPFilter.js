@@ -7,7 +7,14 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 class BaseXPFilter extends Component
 {
     selectedItem(selected) {
-        this.props.selectBaseXP(Number(selected.target.text), this.props.filteredPokemons);
+        this.props.selectBaseXP(Number(selected.target.text));
+        var temp = this;
+        setTimeout(function(){
+            temp.props.filterEngine(temp.props.selectedWeight,
+                                    temp.props.selectedBaseXP,
+                                    temp.props.selectedTypes,
+                                    temp.props.pokemons);
+        }, 300);
     }
     render(){
         return (
@@ -26,8 +33,10 @@ class BaseXPFilter extends Component
 
 function mapStateToProps(state) {
     return {
+        selectedWeight: state.selectedWeight,
         selectedBaseXP: state.selectedBaseXP,
-        filteredPokemons: state.filteredPokemons
+        selectedTypes: state.selectedTypes,
+        pokemons: state.pokemons
     };
 }
 

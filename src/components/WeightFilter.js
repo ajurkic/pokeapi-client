@@ -8,21 +8,28 @@ class WeightFilter extends Component
     selectRadioBtn(selected) {
         switch (selected.target.id) {
             case 'radio1':
-                this.props.selectWeight(50, this.props.pokemons, this.props.filteredPokemons);
+                this.props.selectWeight(50);
                 break;
             case 'radio2':
-                this.props.selectWeight(200, this.props.pokemons, this.props.filteredPokemons);
+                this.props.selectWeight(200);
                 break;
             case 'radio3':
-                this.props.selectWeight(1000, this.props.pokemons, this.props.filteredPokemons);
+                this.props.selectWeight(1000);
                 break;
             case 'radio4':
-                this.props.selectWeight(5000, this.props.pokemons, this.props.filteredPokemons);
+                this.props.selectWeight(5000);
                 break;
             default:
                 console.log('Error choosing the weight filter');
                 break;
         }
+        var temp = this;
+        setTimeout(function(){
+            temp.props.filterEngine(temp.props.selectedWeight,
+                                    temp.props.selectedBaseXP,
+                                    temp.props.selectedTypes,
+                                    temp.props.pokemons);
+        }, 300);
     }
 
     render(){
@@ -42,9 +49,10 @@ class WeightFilter extends Component
 
 function mapStateToProps(state) {
     return {
-        pokemons: state.pokemons,
-        filteredPokemons: state.filteredPokemons,
-        selectedWeight: state.selectedWeight
+        selectedWeight: state.selectedWeight,
+        selectedBaseXP: state.selectedBaseXP,
+        selectedTypes: state.selectedTypes,
+        pokemons: state.pokemons
     };
 }
 

@@ -8,13 +8,9 @@ import BaseXPFilter from '../components/BaseXPFilter';
 
 class FiltersContainer extends Component
 {
-    handleBtnClick() {
-        this.props.resetFilters(this.props.pokemons);
-    }
     render(){
         return (
             <div className='filter-container'>
-                <button className="btn btn-primary" onClick={this.handleBtnClick.bind(this)}>Reset</button>
                 <WeightFilter />
                 <BaseXPFilter />
                 <TypesFilter />

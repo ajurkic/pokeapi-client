@@ -71,6 +71,7 @@
         background-color: white;
         transition: background-color .8s;
         box-shadow: 3px 3px 9px #000000;
+        max-height: 24em;
       }
       .thumbnail:hover {
         background-color: #ecf0f1;

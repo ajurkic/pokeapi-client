@@ -1,10 +1,13 @@
 const initialState = {
     isLoading: true,
     pokemons: [],
-    filteredPokemons: []
+    filteredPokemons: [],
+    selectedWeight: null,
+    selectedBaseXP: null,
+    selectedTypes: []
 }
 
-//catching the pokemon got from pokemonActions.js
+//Catching the actions got from pokemonActions.js
 export default function PokemonsReducer(state=initialState, action) {
     switch (action.type) {
         case 'REQUEST_POKEMON': {
@@ -21,23 +24,20 @@ export default function PokemonsReducer(state=initialState, action) {
         case 'ERROR_RECEIVING_POKEMON': {
             return { ...state, isLoading: true }
         }
-        case 'FILTER_BY_WEIGHT': {
-            return {
-                ...state,
-                filteredPokemons: action.payload
-            }
+        case 'UPDATE_SELECTED_WEIGHT': {
+            return { ...state, selectedWeight: action.payload }
         }
-        case 'FILTER_BY_TYPE': {
-            return {
-                ...state, 
-                filteredPokemons: action.payload
-            }
+        case 'UPDATE_SELECTED_BASE_XP': {
+            return { ...state, selectedBaseXP: action.payload }
         }
-        case 'FILTER_BY_BASEXP': {
-            return {
-                ...state,
-                filteredPokemons: action.payload
-            }
+        case 'ADD_TYPE_TO_SELECTED_TYPES': {
+            return { ...state, selectedTypes: action.payload }
+        }
+        case 'REMOVE_TYPE_FROM_SELECTED_TYPES': {
+            return { ...state, selectedTypes: action.payload }
+        }
+        case 'FILTERED_POKEMONS': {
+            return { ...state, filteredPokemons: action.payload }
         }
         case 'RESET_FILTERS': {
             return {

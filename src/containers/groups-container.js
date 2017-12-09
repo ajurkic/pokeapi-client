@@ -5,38 +5,34 @@ import * as actionCreators from '../actions/pokemonActions';
 class GroupsContainer extends Component
 {
     handleGroupClick(selected){
-        this.props.resetFilters(this.props.filteredPokemons);
-
         let group = selected.target.firstChild.data;
         var temp = this;
         switch (group) {
             case '1':
-                this.props.selectTypes('Rock', this.props.filteredPokemons);
-                setTimeout(function() {
-                    temp.props.selectWeight(1000, temp.props.filteredPokemons);
-                }, 300);
+                this.props.selectWeight(1000);
+                setTimeout(() => { temp.props.selectType("Rock", this.props.selectedTypes) }, 300);
                 break;
             case '2':
-                this.props.selectWeight('5000', this.props.filteredPokemons);
-                setTimeout(function() {
-                    temp.props.selectBaseXP(100, temp.props.filteredPokemons);
-                }, 300);                
+                this.props.selectWeight(5000);
+                setTimeout(() => { temp.props.selectBaseXP(100) }, 300);  
                 break;
             case '3':
-                this.props.selectTypes('Water', this.props.filteredPokemons);
-                setTimeout(function() {
-                    temp.props.selectTypes('Ground', temp.props.filteredPokemons);
-                }, 300);
+                this.props.selectType("Water", this.props.selectedTypes);
+                setTimeout(() => { temp.props.selectType("Ground", temp.props.selectedTypes) }, 300);
                 break;
             case '4':
-                this.props.selectTypes('Psychic', this.props.filteredPokemons);
-                setTimeout(function() {
-                    temp.props.selectBaseXP(300, temp.props.filteredPokemons);
-                }, 300);
+                this.props.selectType("Psychic", this.props.selectedTypes);
+                setTimeout(() => { temp.props.selectBaseXP(300) }, 300);
                 break;
             default:
                 break;
         }
+        setTimeout(function(){
+            temp.props.filterEngine(temp.props.selectedWeight,
+                                    temp.props.selectedBaseXP,
+                                    temp.props.selectedTypes,
+                                    temp.props.pokemons);
+        }, 300);
     }
 
     render(){
@@ -69,7 +65,10 @@ class GroupsContainer extends Component
 
 function mapStateToProps(state) {
     return {
-        filteredPokemons: state.filteredPokemons
+        pokemons: state.pokemons,
+        selectedWeight: state.selectedWeight,
+        selectedBaseXP: state.selectedBaseXP,
+        selectedTypes: state.selectedTypes
     }
 }
 

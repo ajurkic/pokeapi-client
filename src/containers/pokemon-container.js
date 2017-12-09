@@ -15,7 +15,7 @@ class PokemonContainer extends Component
                     <div className="card-block">
                         <h4 className="card-title">{pokemon.name.toUpperCase()}</h4>
                         <img src={pokemon.sprites.front_default} alt="pokemon"/>
-                        <h6 className="card-subtitle mb-2 text-muted">Height: {pokemon.height} inch</h6>
+                        <h6 className="card-subtitle mb-2 text-muted">Height: {pokemon.height} feet</h6>
                         <h6 className="card-subtitle mb-2 text-muted">Weight: {pokemon.weight} lb</h6>
                         <h6 className="card-subtitle mb-2 text-muted">Base experience: {pokemon.base_experience}</h6>
                         <h5 className="card-subtitle text-muted">Type:</h5>
@@ -35,9 +35,18 @@ class PokemonContainer extends Component
     render(){
         return(
             <div className='pokemon-container'>
-                { !this.props.isLoading ? this.createPokemonCards() : '' }
+                {/*If it is done loading and there is pokemon in filteredPokemons array*/}
+                { !this.props.isLoading && this.props.filteredPokemons.length !== 0 
+                    ? this.createPokemonCards() 
+                    : '' }
 
-                { this.props.pokemons.length === 0 && !this.props.isLoading 
+                {/*If it is done loading and all pokemons were filtered*/}
+                { !this.props.isLoading && this.props.filteredPokemons.length === 0 
+                    ? 'All pokemons were filtered, try another combination'
+                    : ''}
+
+                {/*If it is done loading and no pokemon came from api*/}
+                { !this.props.isLoading && this.props.pokemons.length === 0
                     ? <h4>Error fetching pokemon. Please, try refreshing the page. If problem persists pokeapi.co is probably down.</h4> 
                     : ''}
 

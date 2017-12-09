@@ -8,8 +8,17 @@ class TypesFilter extends Component
 {
     selectCheckbox(selected) {
         if(selected.target.checked){
-            this.props.selectTypes(selected.target.nextSibling.data, this.props.filteredPokemons);
+            this.props.selectType(selected.target.nextSibling.data, this.props.selectedTypes);
+        } else {
+            this.props.deselectType(selected.target.nextSibling.data, this.props.selectedTypes);
         }
+        var temp = this;
+        setTimeout(function(){
+            temp.props.filterEngine(temp.props.selectedWeight,
+                                    temp.props.selectedBaseXP,
+                                    temp.props.selectedTypes,
+                                    temp.props.pokemons);
+        }, 500);
     }
 
     render(){
@@ -30,7 +39,10 @@ class TypesFilter extends Component
 }
 function mapStateToProps(state) {
     return {
-        filteredPokemons: state.filteredPokemons
+        selectedWeight: state.selectedWeight,
+        selectedBaseXP: state.selectedBaseXP,
+        selectedTypes: state.selectedTypes,
+        pokemons: state.pokemons
     };
 }
 
